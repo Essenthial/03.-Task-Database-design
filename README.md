@@ -54,9 +54,6 @@ SoftServe Academy, Database Course, **Team-05**.
 - **CRM** — «Customer information» у варіанті вказана як **Final-поле**; адреси та
   бонусні рахунки — це розширений CRM понад базовий рівень.
 
-На діаграмі це позначено підписом **FINAL** у заголовку кожної таблиці та в легенді.
-(MVP-таблиці — locations, staff, menu, orders, inventory — належать модулям інших учасників.)
-
 ---
 
 ## ER Diagram
