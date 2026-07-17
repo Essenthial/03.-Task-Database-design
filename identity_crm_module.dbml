@@ -1,0 +1,85 @@
+// =============================================================================
+//  MODULE: Ідентифікація та доступ (RBAC) + RCM/Покупці (CRM)  — UUID keys
+//  Paste into https://dbdiagram.io -> relationships render automatically.
+// =============================================================================
+
+// ---------- Module 1: RBAC ---------------------------------------------------
+Table users {                         // КОРИСТУВАЧІ
+  user_id        uuid      [pk]
+  role_id        uuid      [not null, ref: > roles.role_id]
+  username       varchar   [not null, unique]
+  email          varchar   [unique]
+  password_hash  varchar   [not null] // HASH, not the raw password
+  full_name      varchar
+  is_active      boolean   [not null, default: true]
+  created_at     timestamp [not null]
+  Note: 'RBAC'
+}
+
+Table roles {                         // РОЛІ
+  role_id     uuid    [pk]
+  name        varchar [not null, unique]
+  description varchar
+  Note: 'RBAC'
+}
+
+Table access_rights {                 // ПРАВА ДОСТУПУ
+  right_id    uuid    [pk]
+  code        varchar [not null, unique]
+  description varchar
+  Note: 'RBAC'
+}
+
+Table roles_rights {                  // РОЛІ_ПРАВА (junction M:N)
+  role_id  uuid [not null, ref: > roles.role_id]
+  right_id uuid [not null, ref: > access_rights.right_id]
+  indexes { (role_id, right_id) [pk] }
+  Note: 'RBAC (M:N roles <-> rights)'
+}
+
+// ---------- Module 2: CRM ----------------------------------------------------
+Table customers {                     // КЛІЄНТИ
+  customer_id uuid      [pk]
+  user_id     uuid      [unique, ref: > users.user_id]  // optional login (0..1)
+  first_name  varchar   [not null]
+  last_name   varchar
+  phone       varchar
+  email       varchar   [unique]
+  is_active   boolean   [not null, default: true]
+  created_at  timestamp [not null]
+  Note: 'CRM'
+}
+
+Table customer_addresses {            // АДРЕСИ КЛІЄНТІВ
+  address_id   uuid    [pk]
+  customer_id  uuid    [not null, ref: > customers.customer_id]
+  address_type varchar             // shipping / billing / home
+  street       varchar [not null]
+  city         varchar
+  postal_code  varchar
+  country      varchar
+  is_default   boolean [not null, default: false]
+  Note: 'CRM'
+}
+
+Table bonus_accounts {                // БОНУСНІ РАХУНКИ
+  bonus_account_id uuid      [pk]
+  customer_id      uuid      [not null, unique, ref: > customers.customer_id] // 1:1
+  balance          numeric   [not null, default: 0]
+  status           varchar   [not null, default: 'active']
+  created_at       timestamp [not null]
+  updated_at       timestamp
+  Note: 'CRM (1:1 with customer)'
+}
+
+TableGroup identity_access {
+  users
+  roles
+  access_rights
+  roles_rights
+}
+TableGroup crm_customers {
+  customers
+  customer_addresses
+  bonus_accounts
+}
