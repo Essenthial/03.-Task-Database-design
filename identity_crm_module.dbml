@@ -48,7 +48,7 @@ Table customers {                     // КЛІЄНТИ
 Table customer_addresses {            // АДРЕСИ КЛІЄНТІВ
   address_id   uuid    [pk]
   customer_id  uuid    [not null, ref: > customers.customer_id]
-  address_type varchar             // shipping / billing / home
+  address_type varchar             // shipping / work / home
   street       varchar [not null]
   city         varchar
   postal_code  varchar
