@@ -38,7 +38,7 @@ SoftServe Academy, Database Course, **Team-05**.
 ## Contribution Note
 
 | Contributor | Modules / Tables |
-
+|---|---|
 | **Vitalii Alokhin** (@Essenthial) | **Модуль 1** — Ідентифікація та доступ: `users`, `roles`, `access_rights`, `roles_rights` · **Модуль 2** — CRM: `customers`, `customer_addresses`, `bonus_accounts` |
 
 ---
