@@ -3,14 +3,14 @@
 Частина командного проєкту **Restaurant Management System** (Variant 3, Hard) —
 SoftServe Academy, Database Course, **Team-05**.
 
-> **Це завдання Task 03 (Database Design)** — тут лише **дизайн схеми**: ER-діаграма,
+> **Це завдання Task 03 (Database Design)** — тут лише **дизайн схеми**
 
 **Module author:** Vitalii Alokhin ([@Essenthial](https://github.com/Essenthial))
 
 ---
 
 ## Зміст
-- [Огляд модуля](#огляд-модуля)
+- [Module Overview](#Module Overview)
 - [Contribution Note](#contribution-note)
 - [Позначення MVP / Final](#позначення-mvp--final)
 - [ER-діаграма](#er-діаграма)
