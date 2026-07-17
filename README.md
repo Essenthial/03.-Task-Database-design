@@ -18,7 +18,6 @@ SoftServe Academy, Database Course, **Team-05**.
 - [Relationships & Cardinality](#relationships--cardinality)
 - [Data Types](#data-types)
 - [Design Decisions](#design-decisions)
-- [Integration with Other Modules](#integration-with-other-modules)
 
 ---
 
