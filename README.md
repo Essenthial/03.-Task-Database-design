@@ -1,13 +1,11 @@
-# Task 03 — Database Design · Модуль «Ідентифікація та доступ» + «RCM / Покупці»
+# Task 03 — Database Design
 
 Частина командного проєкту **Restaurant Management System** (Variant 3, Hard) —
 SoftServe Academy, Database Course, **Team-05**.
 
 > **Це завдання Task 03 (Database Design)** — тут лише **дизайн схеми**: ER-діаграма,
-> опис таблиць, типів даних і зв'язків. DDL-скрипт є окремим завданням (Task 04).
 
-**Автор блоку:** Vitalii Alokhin ([@Essenthial](https://github.com/Essenthial))
-**СУБД:** PostgreSQL · **Тип ключів:** `UUID` (командний стандарт)
+**Module author:** Vitalii Alokhin ([@Essenthial](https://github.com/Essenthial))
 
 ---
 
