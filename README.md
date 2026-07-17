@@ -124,13 +124,13 @@ SoftServe Academy, Database Course, **Team-05**.
 | `created_at` | `timestamp` | NN, DEF `now()` | Момент реєстрації |
 
 ### 6. `customer_addresses` — адреси клієнтів
-У клієнта може бути кілька адрес (доставка, рахунок, дім).
+У клієнта може бути кілька адрес (доставка, робота, дім).
 
 | Column | Type | Constraints | Description |
 |---|---|---|---|
 | `address_id` | `uuid` | PK, DEF `gen_random_uuid()` | Ідентифікатор адреси |
 | `customer_id` | `uuid` | NN, FK → `customers` | Власник адреси |
-| `address_type` | `varchar(20)` | CHECK: shipping / billing / home | Тип адреси |
+| `address_type` | `varchar(20)` | CHECK: shipping / work / home | Тип адреси |
 | `street` | `varchar(150)` | NN | Вулиця, будинок |
 | `city` | `varchar(100)` | — | Місто |
 | `postal_code` | `varchar(20)` | — | Індекс |
