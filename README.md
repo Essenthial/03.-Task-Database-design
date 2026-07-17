@@ -26,7 +26,7 @@ SoftServe Academy, Database Course, **Team-05**.
 
 Мій внесок — це два модулі: керування доступом (RBAC) та клієнти (CRM).
 
-| Підмодуль | Таблиці | Призначення |
+| Submodule | Tables | Purpose |
 |---|---|---|
 | **RBAC** — Ідентифікація та доступ | `roles`, `access_rights`, `users`, `roles_rights` | Хто входить у систему і що йому дозволено (керування доступом на основі ролей) |
 | **CRM** — RCM / Покупці | `customers`, `customer_addresses`, `bonus_accounts` | Клієнти, їхні адреси та бонусні рахунки |
@@ -37,7 +37,8 @@ SoftServe Academy, Database Course, **Team-05**.
 
 ## Contribution Note
 
-| Учасник | Модулі / таблиці |
+| Contributor | Modules / Tables |
+|---|---|
 |---|---|
 | **Vitalii Alokhin** (@Essenthial) | **Модуль 1** — Ідентифікація та доступ: `users`, `roles`, `access_rights`, `roles_rights` · **Модуль 2** — CRM: `customers`, `customer_addresses`, `bonus_accounts` |
 
@@ -71,7 +72,7 @@ SoftServe Academy, Database Course, **Team-05**.
 Довідник ролей: набір прав під однією назвою (admin, manager, cashier). Роль визначає
 **що користувач може робити в застосунку**, а не посаду працівника.
 
-| Колонка | Тип | Обмеження | Опис |
+| Column | Type | Constraints | Description |
 |---|---|---|---|
 | `role_id` | `uuid` | PK, DEF `gen_random_uuid()` | Ідентифікатор ролі |
 | `name` | `varchar(50)` | NN, UQ | Назва ролі (admin / manager / cashier) |
@@ -80,7 +81,7 @@ SoftServe Academy, Database Course, **Team-05**.
 ### 2. `access_rights` — права доступу
 Атомарні дозволи — одна конкретна дія в системі.
 
-| Колонка | Тип | Обмеження | Опис |
+| Column | Type | Constraints | Description |
 |---|---|---|---|
 | `right_id` | `uuid` | PK, DEF `gen_random_uuid()` | Ідентифікатор права |
 | `code` | `varchar(80)` | NN, UQ | Машинний код права (напр. `orders.create`) |
@@ -89,7 +90,7 @@ SoftServe Academy, Database Course, **Team-05**.
 ### 3. `users` — користувачі
 Облікові записи для входу. Один користувач має одну роль.
 
-| Колонка | Тип | Обмеження | Опис |
+| Column | Type | Constraints | Description |
 |---|---|---|---|
 | `user_id` | `uuid` | PK, DEF `gen_random_uuid()` | Ідентифікатор користувача |
 | `role_id` | `uuid` | NN, FK → `roles` | Роль користувача (його права) |
@@ -103,7 +104,7 @@ SoftServe Academy, Database Course, **Team-05**.
 ### 4. `roles_rights` — зв'язок «роль ↔ право» (junction, M:N)
 Які саме права входять у роль.
 
-| Колонка | Тип | Обмеження | Опис |
+| Column | Type | Constraints | Description |
 |---|---|---|---|
 | `role_id` | `uuid` | PK, FK → `roles` | Роль |
 | `right_id` | `uuid` | PK, FK → `access_rights` | Право |
@@ -126,7 +127,7 @@ SoftServe Academy, Database Course, **Team-05**.
 ### 6. `customer_addresses` — адреси клієнтів
 У клієнта може бути кілька адрес (доставка, рахунок, дім).
 
-| Колонка | Тип | Обмеження | Опис |
+| Column | Type | Constraints | Description |
 |---|---|---|---|
 | `address_id` | `uuid` | PK, DEF `gen_random_uuid()` | Ідентифікатор адреси |
 | `customer_id` | `uuid` | NN, FK → `customers` | Власник адреси |
@@ -140,7 +141,7 @@ SoftServe Academy, Database Course, **Team-05**.
 ### 7. `bonus_accounts` — бонусні рахунки
 Один бонусний рахунок на клієнта (1:1).
 
-| Колонка | Тип | Обмеження | Опис |
+| Column | Type | Constraints | Description |
 |---|---|---|---|
 | `bonus_account_id` | `uuid` | PK, DEF `gen_random_uuid()` | Ідентифікатор рахунку |
 | `customer_id` | `uuid` | NN, UQ, FK → `customers` | Власник (UQ → 1:1) |
@@ -153,7 +154,7 @@ SoftServe Academy, Database Course, **Team-05**.
 
 ## Relationships & Cardinality
 
-| Дочірня таблиця | FK-колонка | Батьківська | Кардинальність | Як досягнуто |
+| Child Table | FK Column | Parent Table | Cardinality | Implementation |
 |---|---|---|---|---|
 | `users` | `role_id` | `roles` | **1:N** (один-багато) | звичайний FK |
 | `roles_rights` | `role_id` | `roles` | **M:N** | junction |
@@ -166,17 +167,13 @@ SoftServe Academy, Database Course, **Team-05**.
 
 ## Data Types
 
-| Тип | Що зберігає | Приклад поля |
+| Type | Usage | Example Field |
 |---|---|---|
 | `uuid` | Унікальний ідентифікатор (128-біт), `gen_random_uuid()` | усі `*_id` |
 | `varchar(n)` | Рядок обмеженої довжини | `name`, `email`, `street` |
 | `numeric(12,2)` | Точне число з дробом (гроші/бали) | `balance` |
 | `boolean` | `true` / `false` (прапорець) | `is_active`, `is_default` |
 | `timestamp` | Дата **і** час разом | `created_at`, `updated_at` |
-
-Чому саме так: `uuid` — командний стандарт (глобально унікальний); `numeric` для
-балансу (гроші не можна тримати у `float` через похибки округлення); `varchar(n)` з
-лімітом дає легку валідацію довжини.
 
 ---
 
