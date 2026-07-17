@@ -191,20 +191,4 @@ SoftServe Academy, Database Course, **Team-05**.
   дефолтними дві адреси одного клієнта.
 - **Телефон не унікальний.** Один номер може належати кільком клієнтам (родина,
   корпоративний). Ідентифікатор клієнта — `customer_id`, а не телефон.
-- **`customers` — спільна.** Єдина таблиця для всієї команди; мій CRM-модуль доповнює
-  її полями `user_id` та `is_active`.
 
----
-
-## Integration with Other Modules
-
-FK живуть у чужих таблицях і посилаються на мої (усі — тип `uuid`):
-
-- `orders.customer_id` → `customers.customer_id` (модуль «Замовлення»)
-- `reservations.customer_id` → `customers.customer_id` (модуль «Резервація»)
-- `staff.user_id` → `users.user_id` (модуль «Персонал») — працівники входять у систему
-
----
-
-*ER-діаграма створена в dbdiagram.io та перевірена на реальній схемі в Supabase.
-DDL-скрипт — у завданні Task 04. Відео-презентація (~2 хв) — окремий особистий deliverable.*
