@@ -41,10 +41,6 @@ SoftServe Academy, Database Course, **Team-05**.
 |---|---|
 | **Vitalii Alokhin** (@Essenthial) | **Модуль 1** — Ідентифікація та доступ: `users`, `roles`, `access_rights`, `roles_rights` · **Модуль 2** — CRM: `customers`, `customer_addresses`, `bonus_accounts` |
 
-> Інші модулі спільної схеми (Заклади/Персонал/Резервація, Замовлення/Доставка,
-> Каталог меню, Склад/Постачання) виконали інші учасники команди — див. загальний
-> репозиторій команди `team-05`.
-
 ---
 
 ## MVP / Final Scope
