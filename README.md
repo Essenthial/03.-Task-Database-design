@@ -60,10 +60,6 @@ SoftServe Academy, Database Course, **Team-05**.
 
 ![ER Diagram](task03_er_identity_crm.png)
 
-> Фіолетовий блок — RBAC, бірюзовий — CRM. «Воронячі лапки» (crow's foot) позначають
-> бік «багато». `NN` = NOT NULL (обов'язкове поле). Junction-таблиця `roles_rights`
-> має складений первинний ключ із двох зовнішніх ключів. 
-
 ---
 
 ## Tables Description
